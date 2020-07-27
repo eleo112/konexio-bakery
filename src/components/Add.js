@@ -2,9 +2,6 @@ import React from 'react';
 import Slider from './core/Slider';
 import Button from './core/Button'
 
-const minAdd = 1;
-const maxAdd = 10;
-
 class Add extends React.Component {
 
     constructor(props) {
@@ -23,10 +20,9 @@ class Add extends React.Component {
         });
     }
 
-    // onSubmit() {
-        // onClick={this.props.price}
-        // onClick={this.props.input}
-    // }
+    onSubmit() {
+        this.props.onAdd(this.state.price);
+    }
 
     render () {
         return (
@@ -34,11 +30,14 @@ class Add extends React.Component {
                     <input type="text"
                         input={this.state.input}
                         name="Item"
-                        onChange={(evt) => this.onChange('add', evt.target.value)}/>
-                    <Button>Add</Button>
+                        onChange={(e) => this.onChange('input', e.target.value)}/>
+                    <Button
+                        onclick={this.onSubmit}>
+                            Add
+                    </Button>
                 <Slider 
-                    max={maxAdd}
-                    min={minAdd}
+                    max={1}
+                    min={10}
                     value={this.props.input}
                     onChange={this.props.onChange} />
             </div>
