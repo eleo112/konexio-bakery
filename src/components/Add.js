@@ -11,35 +11,53 @@ class Add extends React.Component {
           price: 1,
         };
 
-        this.onChange = this.onChange.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
+        this.onChangeInput = this.onChangeInput.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChange(val) {
+    onChangePrice(price) {
         this.setState({
-            input: val
+            price
         });
     }
 
+    onChangeInput(evt) {
+        const input = evt.target.value;
+        this.setState({
+            input: input
+        });
+    }
+
+
     onSubmit() {
-        this.props.onAdd(this.state.price);
+        // console.log('cmp/App#onSubmit');
+        const {
+            price,
+            input
+        } = this.state
+        this.props.onSubmit(price, input);
+
     }
 
     render () {
+        const {
+            price
+        } = this.state;
         return (
             <div className="col-12">
-                    <input type="text"
-                        input={this.state.input}
-                        name="Item"
-                        onChange={(e) => this.onChange('input', e.target.value)}/>
+                    <input
+                        placeholder="Item"
+                        onChange={this.onChangeInput}/>
                     <Button
-                        onclick={this.onSubmit}>
+                        onClick={this.onSubmit}>
                             Add
                     </Button>
                 <Slider 
-                    max={1}
-                    min={10}
-                    value={this.props.input}
-                    onChange={this.props.onChange} />
+                    max={10}
+                    min={1}
+                    value={price}
+                    onChange={this.onChangePrice} />
             </div>
         );
     }
