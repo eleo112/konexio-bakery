@@ -9,7 +9,9 @@ class Card extends React.Component {
           source: "specimen",
         };
 
-        componentDidMount() {
+    }
+
+    componentDidMount() {
             let url = 'http://konexio.codiscovery.co/bakery/api/?q=' 
                 fetch(url, request)
                     .then(res => res.json())
