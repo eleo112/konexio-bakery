@@ -1,5 +1,5 @@
 import React from 'react';
-import 'specimen' from '../../specimen.jpg';
+import specimen from '../../specimen.jpg';
 import Button from '../core/Button';
 
 class Card extends React.Component {
@@ -12,20 +12,40 @@ class Card extends React.Component {
     }
 
     componentDidMount() {
-            let url = 'http://konexio.codiscovery.co/bakery/api/?q=' 
-                fetch(url, request)
-                    .then(res => res.json())
-                    .then(json => {
-                        this.setState({ 
-                            source: json.source,
+        const {
+            input
+        } = this.props;
+        const url = `http://konexio.codiscovery.co/bakery/api/?q=${input}`;
+                
+            fetch(url)
+                .then(res => res.json())
+                .then(json => {
+                    const source = json.source
+                    this.setState({ 
+                        source
                     });
                 });
         }
 
     render () {
+        const {
+            source
+        } = this.state;
+        const {
+            onClick,
+            input,
+            price
+        } =this.props;
         return(
-            <div>
-                <Button></Button>
+            <div className="col"
+                style={{
+                    width: 150
+                }}>
+                
+                <Button
+                    onClick={() => onClick({ price, name: input })}>
+                    <img className="img-fluid" src={source} alt="image pastry"/>
+                </Button>
             </div>
         );
     }

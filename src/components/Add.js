@@ -35,8 +35,12 @@ class Add extends React.Component {
         const {
             price,
             input
-        } = this.state
-        this.props.onSubmit(price, input);
+        } = this.state;
+        const {
+            onAdd
+        } = this.props;
+
+        onAdd(price, input);
 
     }
 
@@ -47,7 +51,8 @@ class Add extends React.Component {
         return (
             <div className="col-12">
                     <input
-                        placeholder="Item"
+                        value={input}
+                        placeholder={"Item"}
                         onChange={this.onChangeInput}/>
                     <Button
                         onClick={this.onSubmit}>

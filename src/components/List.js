@@ -3,13 +3,13 @@ import React from 'react';
 class List extends React.Component {
     render () {
         return(
-            <div>
+            <div className="col-12">
                 <ul style={{
                     listStyle: 'none'
                 }}>
-                    {this.props.items.map((item, key) => {
+                    {this.props.items.map((item, index) => {
                         return (
-                            <li key={key}>
+                            <li key={index}>
                                 {item.input} - {item.price} €
                             </li>
                         );
